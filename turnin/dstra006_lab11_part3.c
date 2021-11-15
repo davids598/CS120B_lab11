@@ -35,7 +35,7 @@ unsigned char i = 0;
 unsigned char prev_x = 0;
 // END
 
-//PauseSM
+//--------------------------Example SM Code-------------------------------------
 enum pauseButtonSM_States { pauseButton_wait, pauseButton_press, pauseButton_release };
 
 int pauseButtonSMTick(int state) {
@@ -113,7 +113,7 @@ int displaySMTick(int state) {
   PORTB = output;
   return state;
 }
-
+//----------------------------Part 1--------------------------------------------
 enum keypad_States { keypad_check };
 
 int keypadSMTick(int state) {
@@ -149,7 +149,7 @@ int keypadSMTick(int state) {
   }
   return state;
 }
-
+//---------------------------------Part 2---------------------------------------
 enum LED_Scrolling_States { LED_LOOP };
   char partial_string[16] = {};
 int LCD_Scrolling(int state) {
@@ -170,7 +170,7 @@ int LCD_Scrolling(int state) {
   }
   return state;
 }
-
+//----------------------------------Part 3--------------------------------------
 enum LCD_KeypadInput_States { Keypad_input };
 
 int LCD_KeypadInputsSMTick(int state) {
@@ -226,17 +226,7 @@ int main(void) {
   task2.period = 50;
   task2.elapsedTime = task2.period;
   task2.TickFct = &LCD_KeypadInputsSMTick;
-  /*
-  task3.state = start;
-  task3.period = 1000;
-  task3.elapsedTime = task3.period;
-  task3.TickFct = &toggleLED1SMTick;
 
-  task4.state = start;
-  task4.period = 10;
-  task4.elapsedTime = task4.period;
-  task4.TickFct = &displaySMTick;
-  */
   unsigned long GCD = tasks[0]->period;
   for (int i = 1; i < numTasks; i++) {
     GCD = findGCD(GCD, tasks[i]->period);
@@ -260,15 +250,5 @@ int main(void) {
     TimerFlag = 0;
   }
 
-  /*
-  unsigned char x;
-
-  DDRA = 0x00; PORTA = 0xFF;
-  DDRB = 0xFF; PORTB = 0x00;
-  DDRC = 0xF0; PORTC = 0x0F;
-  DDRD = 0xFF; PORTD = 0x00;
-
-  return 1;
-  */
   return 0;
 }

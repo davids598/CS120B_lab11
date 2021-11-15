@@ -37,7 +37,7 @@ unsigned char keypad_data;
 unsigned char data_to_write;
 // END
 
-//PauseSM
+//-----------------------------Example SM Code----------------------------------
 enum pauseButtonSM_States { pauseButton_wait, pauseButton_press, pauseButton_release };
 
 int pauseButtonSMTick(int state) {
@@ -115,7 +115,7 @@ int displaySMTick(int state) {
   PORTB = output;
   return state;
 }
-//Part 1
+//---------------------------------Part 1---------------------------------------
 enum keypad_States { keypad_check };
 
 int keypadSMTick(int state) {
@@ -151,7 +151,7 @@ int keypadSMTick(int state) {
   }
   return state;
 }
-//Part 2
+//----------------------------------Part 2--------------------------------------
 enum LED_Scrolling_States { LED_LOOP };
   char partial_string[16] = {};
 int LCD_Scrolling(int state) {
@@ -172,7 +172,7 @@ int LCD_Scrolling(int state) {
   }
   return state;
 }
-//Part 4
+//------------------------Same Func Changed for Part 4--------------------------
 enum LCD_KeypadInput_States { Keypad_input, hold, display };
 
 int LCD_KeypadInputsSMTick(int state) {
